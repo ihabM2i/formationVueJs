@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
@@ -35,7 +36,7 @@
             <div v-for="contact in contacts" class="row m-1 p-1 border border-secondary rounded">
                 <div class="col">
                     <div class="row">
-                        <div class="col" v-on:click="display(contact.id)">{{contact.name}}</div>
+                        <div class="col" v-on:click="display(contact.id)">{{contact.name}}<i class="fas fa-arrow-circle-down"></i></div>
                     </div>
                     <div class="row" v-if="contact.display == true">
                         <div class="col">{{contact.phone}}</div>
