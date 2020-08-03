@@ -35,9 +35,9 @@
             <div v-for="contact in contacts" class="row m-1 p-1 border border-secondary rounded">
                 <div class="col">
                     <div class="row">
-                        <div class="col">{{contact.name}}</div>
+                        <div class="col" v-on:click="display(contact.id)">{{contact.name}}</div>
                     </div>
-                    <div class="row">
+                    <div class="row" v-if="contact.display == true">
                         <div class="col">{{contact.phone}}</div>
                         <div class="col">{{contact.email}}</div>
                     </div>
@@ -50,20 +50,33 @@
             el: "#app",
             data: {
                 contact: {
+                    id : undefined,
                     name: '',
                     phone: '',
-                    email: ''
+                    email: '',
+                    display : false
                 },
                 contacts: []
             },
             methods: {
                 sendForm() {
+                    this.contact.id = (this.contacts.length > 0) ? (this.contacts[this.contacts.length-1].id + 1) : 1
                     this.contacts.push(this.contact)
                     this.contact = {
                         name: '',
                         phone: '',
-                        email: ''
+                        email: '',
+                        id : undefined,
+                        display : false
                     }
+                },
+                display(id) {
+                    console.log(id)
+                    this.contacts.forEach((contact) => {
+                        if(contact.id == id) {
+                            contact.display = !contact.display
+                        }
+                    })
                 }
             }
         })
