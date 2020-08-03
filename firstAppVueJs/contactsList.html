@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <section class="container">
+            <form v-on:submit.prevent="sendForm">
+                <div class="row m-1">
+                    <input class="col form-control" v-model="contact.name" placeholder="Nom complet" />
+                </div>
+                <div class="row m-1">
+                    <input class="col form-control" v-model="contact.phone" placeholder="Téléphone" />
+                </div>
+                <div class="row m-1">
+                    <input class="col form-control" v-model="contact.email" placeholder="Email" />
+                </div>
+                <div class="row m-1">
+                    <button class="btn btn-success col form-control" type="submit">Valider</button>
+                </div>
+            </form>
+        </section>
+        <section class="container" v-if="contacts.length > 0">
+            <h1>Liste contacts</h1>
+            <div v-for="contact in contacts" class="row m-1 p-1 border border-secondary rounded">
+                <div class="col">
+                    <div class="row">
+                        <div class="col">{{contact.name}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col">{{contact.phone}}</div>
+                        <div class="col">{{contact.email}}</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                contact: {
+                    name: '',
+                    phone: '',
+                    email: ''
+                },
+                contacts: []
+            },
+            methods: {
+                sendForm() {
+                    this.contacts.push(this.contact)
+                    this.contact = {
+                        name: '',
+                        phone: '',
+                        email: ''
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
