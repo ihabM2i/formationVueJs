@@ -13,7 +13,7 @@
     <div class="container" id="app">
         <section v-on:click="play">
             <div v-for="row in 3" class="row">
-                <div v-for="col in 3" class="col case">
+                <div v-for="col in 3" :data-x="row" :data-y="col" class="col case">
     
                 </div>
             </div>
