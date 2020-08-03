@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1 v-if="display == true">
+            {{msg}}
+        </h1>
+        <h1 v-else>
+            Aucun message
+        </h1>
+        <div v-show="display == true">
+            Afficher si display true
+        </div>
+        <div v-for="nom in noms">
+            {{nom}}
+        </div>
+        <div>
+            <input type="text" v-model="saisi" />
+            {{saisi}}
+        </div>
+        <!-- <div v-on:click="clickImage">
+            <img v-for="image in images" :src="image" />
+        </div> -->
+        <div @click="clickImage">
+            <img v-for="image in images" :src="image" />
+        </div>
+    </div>
+    <script>
+        let app = new Vue({
+            el:'#app',
+            data : {
+                msg : 'Bonjour tout le monde',
+                display : false,
+                noms : ['toto', 'tata', 'titi'],
+                saisi : '',
+                images : [
+                    'https://management.m2iformation.fr/wp-content/uploads/2020/01/cropped-m2iformation-management.png',
+                    'https://diplome.m2iformation.fr/wp-content/uploads/2020/01/logo-m2i-formation-diplomante-01.png'
+                ]
+            },
+            methods : {
+                clickImage(event){
+                    //event => propagateur de l'évènement
+                    //event.target => dom qui execute l'évènement
+                    alert(event.target.getAttribute('src'))
+                }
+            }
+        })
+    </script>
+</body>
+</html>
