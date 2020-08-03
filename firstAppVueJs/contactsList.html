@@ -36,12 +36,14 @@
             <div v-for="contact in contacts" class="row m-1 p-1 border border-secondary rounded">
                 <div class="col">
                     <div class="row">
-                        <div class="col" v-on:click="display(contact.id)">{{contact.name}}<i class="fas fa-arrow-circle-down"></i></div>
+                        <div class="col" v-on:click="display(contact.id)">{{contact.name}}<i
+                                class="fas fa-arrow-circle-down"></i></div>
                     </div>
                     <div class="row" v-if="contact.display == true">
                         <div class="col">{{contact.phone}}</div>
                         <div class="col">{{contact.email}}</div>
-                        <div class="col-1" ><i v-on:click="deleteContact(contact.id)" class="fas fa-trash" ></i></div>
+                        <div class="col-1"><i v-on:click="deleteContact(contact.id)" class="fas fa-trash"></i></div>
+                        <div class="col-1"><i v-on:click="editContact(contact.id)" class="fas fa-edit"></i></div>
                     </div>
                 </div>
             </div>
@@ -52,35 +54,49 @@
             el: "#app",
             data: {
                 contact: {
-                    id : undefined,
+                    id: undefined,
                     name: '',
                     phone: '',
                     email: '',
-                    display : false
+                    display: false
                 },
                 contacts: []
             },
             methods: {
                 sendForm() {
-                    this.contact.id = (this.contacts.length > 0) ? (this.contacts[this.contacts.length-1].id + 1) : 1
-                    this.contacts.push(this.contact)
+                    if (this.contact.id == undefined) {
+                        this.contact.id = (this.contacts.length > 0) ? (this.contacts[this.contacts.length - 1].id + 1) : 1
+                        this.contacts.push(this.contact)
+                    }
+                    else {
+                        this.contacts.forEach((contact) => {
+                            if (contact.id == this.contact.id) {
+                                contact.name = this.contact.name
+                                contact.phone = this.contact.phone
+                                contact.email = this.contact.email
+                            }
+                        })
+                    }
                     this.contact = {
                         name: '',
                         phone: '',
                         email: '',
-                        id : undefined,
-                        display : false
+                        id: undefined,
+                        display: false
                     }
                 },
                 display(id) {
                     this.contacts.forEach((contact) => {
-                        if(contact.id == id) {
+                        if (contact.id == id) {
                             contact.display = !contact.display
                         }
                     })
                 },
                 deleteContact(id) {
                     this.contacts = this.contacts.filter(c => c.id != id)
+                },
+                editContact(id) {
+                    this.contact = { ...this.contacts.find((c) => c.id == id) }
                 }
             }
         })
