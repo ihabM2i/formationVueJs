@@ -2,14 +2,12 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import ListTodos from "./components/ListTodos"
 
-
-Vue.config.productionTip = true
+Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  components: { ListTodos },
-  template: '<ListTodos/>'
+  components: { App },
+  template: '<App/>'
 })
