@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Liste contacts</h1>
-        <Contact v-for="contact in contacts" :contact="contact" :key="contact.phone" />
+        <Contact v-on:deleteContact="deleteContact" v-for="contact in contacts" :contact="contact" :key="contact.phone" />
     </div>
 </template>
 <script>
@@ -12,6 +12,11 @@ export default {
     props: ['contacts'],
     components : {
         Contact
+    },
+    methods : {
+        deleteContact(id) {
+            this.$emit('deleteContact',id)
+        }
     }
 }
 </script>
