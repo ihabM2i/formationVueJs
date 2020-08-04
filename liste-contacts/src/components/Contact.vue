@@ -13,12 +13,13 @@
         <i class="fas fa-trash" v-on:click="deleteContact"></i>
       </div>
       <div class="col-1">
-        <i class="fas fa-edit"></i>
+        <i class="fas fa-edit" v-on:click="editContact"></i>
       </div>
     </div>
   </div>
 </template>
 <script>
+import Bus from "./../Bus"
 export default {
   name: "Contact",
   props: ["contact"],
@@ -33,6 +34,9 @@ export default {
     },
     deleteContact() {
       this.$emit("deleteContact", this.contact.id);
+    },
+    editContact() {
+      Bus.$emit("editContact", this.contact);
     },
   },
 };

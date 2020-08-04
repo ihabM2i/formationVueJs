@@ -17,6 +17,7 @@
   </div>
 </template>
 <script>
+import Bus from "./../Bus";
 export default {
   name: "FormContact",
   data: function () {
@@ -27,6 +28,18 @@ export default {
         email: "",
       },
     };
+  },
+  //props:['editContact'],
+  //   updated : function() {
+  //       if(this.$props.editContact != undefined) {
+  //           console.log("updated")
+  //           this.contact = {...this.$props.editContact}
+  //       }
+  //   },
+  created: function () {
+      Bus.$on('editContact', (contact) => {
+          this.contact = {...contact}
+      })
   },
   methods: {
     sendForm() {
