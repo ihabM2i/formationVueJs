@@ -1,7 +1,7 @@
 <template>
-  <div class="row">
+  <div class="row align-items-center">
     <div class="col-4">
-      <div class="row">
+      <div class="row align-items-center">
         <div class="col shoppingCartImg">
           <img :src="product.image" />
         </div>
