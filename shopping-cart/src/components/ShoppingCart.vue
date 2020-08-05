@@ -6,7 +6,7 @@
       <div class="col-4">Quantity</div>
       <div class="col-2">Total</div>
     </div>
-    <ProductShoppingCart v-for="p in cart" :key="p.id" :product="p" />
+    <ProductShoppingCart v-on:updateproduct="updateProduct" v-on:deleteproduct="deleteFromCart" v-for="p in cart" :key="p.id" :product="p" />
     <div class="row border-top pt-3">
       <div class="col-3 offset-9">Total : {{total}}€</div>
     </div>
@@ -41,6 +41,20 @@ export default {
           this.cart.forEach(p=> {
               this.total += p.price * p.qty
           })
+      },
+      deleteFromCart(id) {
+          this.cart = this.cart.filter(p=>p.id != id)
+          this.updateTotal()
+      },
+      updateProduct(obj) {
+           const productFounded = this.cart.find(p=>p.id == obj.id)
+           if(productFounded != undefined) {
+               productFounded.qty += obj.qty
+               if(productFounded.qty <= 0) {
+                   this.cart = this.cart.filter(p => p.id != obj.id)
+               }
+               this.updateTotal()
+           }
       }
   },
   components: {
