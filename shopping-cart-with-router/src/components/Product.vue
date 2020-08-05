@@ -20,12 +20,15 @@
 </template>
 <script>
 //import Bus from "./../tools/Bus"
+import {addProductToCart} from "./../services/CartService"
 export default {
   name: "Product",
   props: ["product"],
   methods : {
       addToCart() {
          // Bus.$emit('addToCart',this.$props.product)
+         addProductToCart(this.$props.product)
+         this.$router.push("/ShoppingCart")
       },
       redirectToInfo() {
           this.$router.push(`/Product/${this.$props.product.id}`)

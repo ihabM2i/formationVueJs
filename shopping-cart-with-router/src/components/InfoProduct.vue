@@ -12,13 +12,14 @@
         <div class="col-8">{{product.description}}</div>
       </div>
       <div class="row m-2 align-items-center justify-content-center">
-          <button class="col-12 btn btn-danger">Ajouter panier</button>
+          <button class="col-12 btn btn-danger" v-on:click="addToCart">Ajouter panier</button>
       </div>
     </div>
   </div>
 </template>
 <script>
-import { getProduct } from "./../services/DataService";
+import { getProduct } from "./../services/DataService"
+import {addProductToCart} from "./../services/CartService"
 export default {
   name: "InfoProduct",
   data: function () {
@@ -29,5 +30,11 @@ export default {
   mounted: function () {
     this.product = getProduct(this.$route.params.id);
   },
+  methods : {
+      addToCart() {
+         addProductToCart(this.product)
+         this.$router.push("/ShoppingCart")
+      },
+  }
 };
 </script>
