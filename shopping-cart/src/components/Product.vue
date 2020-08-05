@@ -14,14 +14,20 @@
       </div>
     </div>
     <div class="position-absolute addButton">
-      <i class="fas fa-plus-circle"></i>
+      <i v-on:click="addToCart" class="fas fa-plus-circle"></i>
     </div>
   </div>
 </template>
 <script>
+import Bus from "./../tools/Bus"
 export default {
   name: "Product",
   props: ["product"],
+  methods : {
+      addToCart() {
+          Bus.$emit('addToCart',this.$props.product)
+      }
+  }
 };
 </script>
 <style >
