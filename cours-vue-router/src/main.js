@@ -3,17 +3,15 @@
 import Vue from 'vue'
 import App from './App'
 import Router from "vue-router"
-import HelloWorld from "./components/HelloWorld"
-import Home from "./components/Home"
-import ComponentWithParam from "./components/ComponentWithParam"
+
 Vue.use(Router)
 
 const router = new Router({
   //les routes de notre application
   routes: [
-    {path : '/', name:'home', component: Home},
-    {path : '/helloworld', name:'helloworld', component: HelloWorld},
-    {path : '/param/:id', name:'param', component: ComponentWithParam},
+    {path : '/', name:'home', component: () => import("./components/Home")},
+    {path : '/helloworld', name:'helloworld', component: () => import("./components/HelloWorld")},
+    {path : '/param/:id', name:'param', component: () => import("./components/ComponentWithParam")},
   ]
 })
 
