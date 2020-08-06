@@ -2,7 +2,8 @@
   <div id="app">
     <section class="container">
       <div class="row m-2">
-        <Search v-on:search="search" />
+        <!-- <Search v-on:search="search" /> -->
+        <Search />
         <Basket />
       </div>
     </section>
@@ -21,9 +22,9 @@ export default {
     Basket
   },
   methods : {
-    search(search) {
-      Bus.$emit('search', search)
-    }
+    // search(search) {
+    //   Bus.$emit('search', search)
+    // }
   }
 };
 </script>

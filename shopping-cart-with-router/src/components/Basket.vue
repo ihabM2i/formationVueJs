@@ -11,23 +11,28 @@ export default {
   name: "Basket",
   data: function () {
     return {
-      nbreProduct: 0,
+      //nbreProduct: 0,
     };
   },
   created: function () {
-    Bus.$on("updateNumberProduct", (nb) => {
-      this.nbreProduct = nb;
-    });
+    // Bus.$on("updateNumberProduct", (nb) => {
+    //   this.nbreProduct = nb;
+    // });
+  },
+  computed : {
+    nbreProduct : function() {
+      return this.$store.getters.numberProducts
+    }
   },
   mounted: function () {
     //getNumberOfProducts();
-    getNumberOfProductsWithPromise().then((res) => {
-      this.nbreProduct = res
-    }).catch((err) => {
+    // getNumberOfProductsWithPromise().then((res) => {
+    //   this.nbreProduct = res
+    // }).catch((err) => {
 
-    }).finally(() => {
+    // }).finally(() => {
       
-    })
+    // })
     //Instrcution ici
   },
   methods : {

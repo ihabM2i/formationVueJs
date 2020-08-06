@@ -19,21 +19,29 @@ export default {
   name: "ShoppingCart",
   data: function () {
     return {
-      cart: [],
-      total: 0,
+      // cart: [],
+      // total: 0,
     };
   },
+  computed : {
+    cart : function() {
+      return this.$store.state.cart
+    },
+    total : function() {
+      return this.$store.getters.totalCart
+    }
+  },
   mounted: function() {
-      this.cart = getCart()
-      this.updateTotal()
+      // this.cart = getCart()
+      // this.updateTotal()
   },
   methods : {
-      updateTotal() {
-          this.total = 0
-          this.cart.forEach(p=> {
-              this.total += p.price * p.qty
-          })
-      },
+      // updateTotal() {
+      //     this.total = 0
+      //     this.cart.forEach(p=> {
+      //         this.total += p.price * p.qty
+      //     })
+      // },
       deleteFromCart(id) {
           this.cart = this.cart.filter(p=>p.id != id)
           this.updateTotal()

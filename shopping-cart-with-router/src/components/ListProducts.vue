@@ -10,6 +10,14 @@ export default {
     components: {
         Product
     },
-    props : ['products']
+    // props : ['products']
+    mounted : function() {
+        this.$store.dispatch('actionGetProducts',undefined)
+    },
+    computed : {
+        products : function() {
+            return this.$store.state.products
+        }
+    }
 }
 </script>
