@@ -6,6 +6,13 @@ import {router} from "./Tools/Router"
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
+
+Vue.filter('money', function(value) {
+  if(!value) {
+    return ''
+  }
+  return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(value)
+})
 new Vue({
   el: '#app',
   components: { App },

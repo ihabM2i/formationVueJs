@@ -9,7 +9,7 @@
           <div class="col title">{{product.title}}</div>
         </div>
         <div class="row">
-          <div class="col">{{product.price}}€</div>
+          <div class="col">{{product.price | money}}</div>
         </div>
       </div>
     </div>
