@@ -1,4 +1,4 @@
-
+import Bus from "./../Tools/Bus"
 export const getCart = () => {
     let cart = []
     if (localStorage.getItem('cart') != undefined) {
@@ -17,13 +17,26 @@ export const addProductToCart = (product) => {
         cart = [...cart, { id:product.id, price:product.price, title:product.title , qty: 1 }]
     }
     localStorage.setItem('cart', JSON.stringify(cart))
+    getNumberOfProducts()
 }
 
 export const updateCart = (cart) => {
     if(cart!= undefined) {
         localStorage.setItem('cart', JSON.stringify(cart))
+        getNumberOfProducts()
     }
     else {
         localStorage.removeItem('cart')
+        getNumberOfProducts()
     }
+    
+}
+
+export const getNumberOfProducts = () => {
+    let cart = getCart()
+    let total = 0
+    cart.forEach(element => {
+        total += element.qty
+    });
+    Bus.$emit("updateNumberProduct",total)
 }

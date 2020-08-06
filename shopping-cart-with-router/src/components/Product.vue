@@ -28,7 +28,7 @@ export default {
       addToCart() {
          // Bus.$emit('addToCart',this.$props.product)
          addProductToCart(this.$props.product)
-         this.$router.push("/ShoppingCart")
+         //this.$router.push("/ShoppingCart")
       },
       redirectToInfo() {
           this.$router.push(`/Product/${this.$props.product.id}`)

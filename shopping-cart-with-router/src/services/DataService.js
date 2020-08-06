@@ -9,3 +9,12 @@ export const getProduct = (id) => {
     const productFound = products.find(p=>p.id == id)
     return {...productFound}
 }
+
+export const searchProduct  = (title) => {
+  if(title == undefined || title == '') {
+    return products
+  }
+  else {
+    return products.filter(p=>p.title.includes(title))
+  }
+}
