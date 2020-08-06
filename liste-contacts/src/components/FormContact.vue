@@ -43,7 +43,11 @@ export default {
   },
   methods: {
     sendForm() {
-      this.$emit("validContact", this.contact);
+      //this.$emit("validContact", this.contact);
+      //Démarrer une mutation
+      //this.$store.commit('addContact', this.contact)
+      //Démarrer une action
+      this.$store.dispatch('actionAddContact', this.contact)
       this.contact = {
         name: "",
         phone: "",

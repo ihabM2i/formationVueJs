@@ -33,7 +33,8 @@ export default {
       this.display = !this.display;
     },
     deleteContact() {
-      this.$emit("deleteContact", this.contact.id);
+      // this.$emit("deleteContact", this.contact.id);
+      this.$store.dispatch('actionDeleteContact', this.contact.id)
     },
     editContact() {
       Bus.$emit("editContact", this.contact);
