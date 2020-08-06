@@ -6,7 +6,7 @@
 </template>
 <script>
 import Bus from "./../Tools/Bus";
-import { getNumberOfProducts } from "./../services/CartService";
+import { getNumberOfProducts, getNumberOfProductsWithPromise } from "./../services/CartService";
 export default {
   name: "Basket",
   data: function () {
@@ -20,7 +20,15 @@ export default {
     });
   },
   mounted: function () {
-    getNumberOfProducts();
+    //getNumberOfProducts();
+    getNumberOfProductsWithPromise().then((res) => {
+      this.nbreProduct = res
+    }).catch((err) => {
+
+    }).finally(() => {
+      
+    })
+    //Instrcution ici
   },
   methods : {
       redirectToShoppingCart() {

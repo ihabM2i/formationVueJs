@@ -14,14 +14,14 @@ export const addProductToCart = (product) => {
         productFounded.qty++
     }
     else {
-        cart = [...cart, { id:product.id, price:product.price, title:product.title , qty: 1 }]
+        cart = [...cart, { id: product.id, price: product.price, title: product.title, qty: 1 }]
     }
     localStorage.setItem('cart', JSON.stringify(cart))
     getNumberOfProducts()
 }
 
 export const updateCart = (cart) => {
-    if(cart!= undefined) {
+    if (cart != undefined) {
         localStorage.setItem('cart', JSON.stringify(cart))
         getNumberOfProducts()
     }
@@ -29,7 +29,7 @@ export const updateCart = (cart) => {
         localStorage.removeItem('cart')
         getNumberOfProducts()
     }
-    
+
 }
 
 export const getNumberOfProducts = () => {
@@ -38,5 +38,19 @@ export const getNumberOfProducts = () => {
     cart.forEach(element => {
         total += element.qty
     });
-    Bus.$emit("updateNumberProduct",total)
+    Bus.$emit("updateNumberProduct", total)
+}
+
+export const getNumberOfProductsWithPromise = () => {
+    let p = new Promise((resolve, reject) => {
+        let cart = getCart()
+        let total = 0
+        cart.forEach(element => {
+            total += element.qty
+        });
+        //Bus.$emit("updateNumberProduct", total)
+        resolve(total)
+    })
+
+    return p
 }

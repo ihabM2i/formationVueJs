@@ -47,12 +47,14 @@ namespace webApi
 
             app.UseAuthorization();
 
+            app.UseCors("allPolicy");
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
 
-            app.UseCors("allPolicy");
+            
         }
     }
 }
