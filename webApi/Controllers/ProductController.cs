@@ -17,5 +17,15 @@ namespace webApi.Controllers
         {
             return new JsonResult(Product.GetProducts());
         }
+
+        [HttpGet("/search/{search}")]
+        public IActionResult Get(string search) {
+            return new JsonResult(Product.SearchProducts(search));
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetProduct(int id) {
+            return new JsonResult(Product.GetProducts().FirstOrDefault(x => x.Id == id));
+        }
     }
 }

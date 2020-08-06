@@ -28,7 +28,10 @@ export default {
     };
   },
   mounted: function () {
-    this.product = getProduct(this.$route.params.id);
+    getProduct(this.$route.params.id).then(res => {
+      this.product = res.data
+    })
+    // this.product = getProduct(this.$route.params.id);
   },
   methods : {
       addToCart() {

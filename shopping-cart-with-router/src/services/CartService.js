@@ -14,7 +14,7 @@ export const addProductToCart = (product) => {
         productFounded.qty++
     }
     else {
-        cart = [...cart, { id: product.id, price: product.price, title: product.title, qty: 1 }]
+        cart = [...cart, { id: product.id, price: product.price, title: product.title, image:product.image, qty: 1 }]
     }
     localStorage.setItem('cart', JSON.stringify(cart))
     getNumberOfProducts()
