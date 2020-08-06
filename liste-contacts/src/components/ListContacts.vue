@@ -16,12 +16,16 @@ export default {
     },
     data : function() {
         return {
-            contacts : []
+           // contacts : this.$store.state.contacts
+        }
+    },
+    computed : {
+        contacts : function() {
+            return this.$store.state.contacts
         }
     },
     mounted : function() {
-        console.log(this.$store.state.contacts)
-        this.contacts = this.$store.state.contacts
+        // this.contacts = this.$store.state.contacts
     },
     methods : {
         // deleteContact(id) {
